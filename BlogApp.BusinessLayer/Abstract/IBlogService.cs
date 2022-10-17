@@ -12,6 +12,7 @@ namespace BlogApp.BusinessLayer.Abstract
     {
         IDataResult<List<Blog>> GetAll();
         IDataResult<List<Blog>> GetBlogWithCategory();
+        IDataResult<List<Blog>> GetBlogByAuthor(int authorId);
         IDataResult<Blog> GetById(int id);
         IResult Add(Blog blog);
         IResult Delete(Blog blog);

@@ -1,0 +1,29 @@
+﻿@using BlogApp.EntityLayer.Concrete
+@using BlogApp.CoreLayer.Utilities.Results
+@model SuccessDataResult<List<Blog>>
+
+<div class="tech-btm">
+    <h4>Other Articles By Author</h4>
+
+    @foreach (var blog in Model.Data)
+    {
+        <div class="blog-grids row mb-3">
+            <div class="col-md-5 blog-grid-left">
+                <a href="single.html">
+                    <img src="@blog.Image" class="img-fluid" alt="">
+                </a>
+            </div>
+            <div class="col-md-7 blog-grid-right">
+
+                <h5>
+                    <a href="single.html">@blog.Title</a>
+                </h5>
+                <div class="sub-meta">
+                    <span>
+                        <i class="far fa-clock">@(((DateTime)blog.CreatedDate).ToString("dd/MMM/yyyy"))</i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    }
+</div>
