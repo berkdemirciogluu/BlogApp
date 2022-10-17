@@ -1,9 +1,8 @@
 using BlogApp.BusinessLayer.Utilities.DependencyContainers;
-using BlogApp.DataAccessLayer.Context;
+using BlogApp.CoreLayer.Utilities.DependencyContainers;
 using BlogApp.DataAccessLayer.DependencyContainers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +22,7 @@ namespace BlogApp.WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddCoreDependencies();
             services.AddBusinessServices();
             services.AddDataAccessRepositories();
             //services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
