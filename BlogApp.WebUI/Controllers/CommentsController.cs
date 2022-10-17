@@ -1,4 +1,5 @@
 ﻿using BlogApp.BusinessLayer.Abstract;
+using BlogApp.EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,8 +21,18 @@ namespace BlogApp.WebUI.Controllers
         {
             return View();
         }
+        [HttpGet]
         public PartialViewResult AddComment()
         {
+            return PartialView();
+        }
+        [HttpPost]
+        public PartialViewResult AddComment(Comment comment)
+        {
+            comment.Date = DateTime.Parse(DateTime.Now.ToShortDateString());
+            comment.Status = true;
+            comment.BlogId = 1;
+            _commentService.Add(comment);
             return PartialView();
         }
         public PartialViewResult GetCommentsByBlog(int blogId)

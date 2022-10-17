@@ -22,7 +22,8 @@ namespace BlogApp.BusinessLayer.Concrete
 
         public IResult Add(Comment comment)
         {
-            throw new NotImplementedException();
+            _commentRepository.Add(comment);
+            return new SuccessResult(Messages.CommentAdded);
         }
 
         public IDataResult<List<Comment>> GetAll()

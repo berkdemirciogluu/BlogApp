@@ -68,5 +68,9 @@ namespace BlogApp.BusinessLayer.Utilities.Messages
         public static string CommentListed = "Comments listed";
 
         public static string AuthorAdded = "Author added";
+
+        public static string NewsLetterAdded = "NewsLetter added";
+
+        public static string CommentAdded = "Comment added";
     }
 }
