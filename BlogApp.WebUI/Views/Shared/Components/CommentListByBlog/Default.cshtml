@@ -1,0 +1,21 @@
+﻿@using BlogApp.EntityLayer.Concrete
+@using BlogApp.CoreLayer.Utilities.Results
+@model SuccessDataResult<List<Comment>>
+
+<div class="comment-top">
+    <h4>Comments</h4>
+    @foreach (var comment in Model.Data)
+    {
+        <div class="media">
+            <img src="~/BlogAppThema/images/t1.jpg" alt="" class="img-fluid" />
+            <div class="media-body">
+                <h5 class="mt-0">@comment.UserName</h5>
+                <p>
+                    @comment.Content
+                </p>
+            </div>
+        </div>
+    }
+</div>
+
+
