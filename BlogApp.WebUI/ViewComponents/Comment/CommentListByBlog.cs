@@ -12,9 +12,9 @@ namespace BlogApp.WebUI.ViewComponents.Comment
             _commentService = commentService;
         }
 
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(int id)
         {
-            return View(_commentService.GetCommentsByBlogId(6));
+            return View(_commentService.GetCommentsByBlogId(id));
         }
     }
 }
