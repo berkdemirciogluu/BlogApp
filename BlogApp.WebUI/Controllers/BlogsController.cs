@@ -23,6 +23,7 @@ namespace BlogApp.WebUI.Controllers
 
         public IActionResult BlogDetails(int id)
         {
+            ViewBag.id = id;
             return View(_blogService.GetById(id));
         }
     }
