@@ -16,7 +16,9 @@ namespace BlogApp.DataAccessLayer.DependencyContainers
             services.AddScoped<IAuthorRepository, EfCoreAuthorRepository>();
             services.AddScoped<IBlogRepository, EfCoreBlogRepository>();
             services.AddScoped<ICommentRepository, EfCoreCommentRepository>();
+            services.AddScoped<IContactRepository, EfCoreContactRepository>();
             services.AddScoped<ICategoryRepository, EfCoreCategoryRepository>();
+            services.AddScoped<IAboutRepository, EfCoreAboutRepository>();
             services.AddScoped<INewsLetterRepository, EfCoreNewsLetterRepository>();
         }
     }
