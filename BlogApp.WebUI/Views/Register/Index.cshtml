@@ -1,4 +1,5 @@
-﻿
+﻿@model BlogApp.EntityLayer.Concrete.Author
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/UserLayout.cshtml";
@@ -11,26 +12,34 @@
         <h3 class="tittle">Register Now</h3>
         <div class="inner-sec">
             <div class="login p-5 bg-light mx-auto mw-100">
-                <form method="post">
+                @using (Html.BeginForm("Index", "Register", FormMethod.Post))
+                {
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom01">Full name</label>
-
-                            <input type="text" class="form-control" id="validationDefault01" name="Name" placeholder="" required="">
+                            @Html.TextBoxFor(w => w.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(w => w.Name,"", new { @class = "text-danger" })
+                            @*<input type="text" class="form-control" id="validationDefault01" name="Name" placeholder="" required="">*@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom02">Email</label>
-                            <input type="email" class="form-control" id="validationDefault02" name="Email" placeholder="" required="">
+                            @Html.TextBoxFor(w => w.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(w => w.Email, "", new { @class = "text-danger" })
+                            @*<input type="email" class="form-control" id="validationDefault02" name="Email" placeholder="" required="">*@
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="exampleInputPassword1 mb-2">Password</label>
-                            <input type="password" class="form-control" id="password1" name="Password" placeholder="" required="">
+                            @Html.TextBoxFor(w => w.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(w => w.Password, "", new { @class = "text-danger" })
+                            @*<input type="password" class="form-control" id="password1" name="Password" placeholder="" required="">*@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleInputPassword2 mb-2">Image Path</label>
-                            <input type="text" class="form-control" id="password2" name="Image" placeholder="" required="">
+                            @Html.TextBoxFor(w => w.Image, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(w => w.Image, "", new { @class = "text-danger" })
+                            @*<input type="text" class="form-control" id="password2" name="Image" placeholder="" required="">*@
                         </div>
 
                     </div>
@@ -38,13 +47,12 @@
                     <p>
                         <a href="#" id="conditionconfirmation">By clicking Signup, I agree to your terms</a>
                     </p>
-                </form>
-
+                }
             </div>
         </div>
     </div>
     <script>
-        $('#conditionconfirmation').click(function () {
+        $('conditionconfirmation').click(function () {
             swal("You confirmed all the conditions!!");
         });
     </script>

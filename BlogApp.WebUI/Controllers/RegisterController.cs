@@ -1,5 +1,7 @@
 ﻿using BlogApp.BusinessLayer.Abstract;
+using BlogApp.BusinessLayer.Utilities.ValidationRules.FluentValidation;
 using BlogApp.EntityLayer.Concrete;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -25,10 +27,23 @@ namespace BlogApp.WebUI.Controllers
         [HttpPost]
         public IActionResult Index(Author author)
         {
-            author.Status = true;
-            author.About = "Deneme";
-            _authService.Add(author);
-            return RedirectToAction("Index","Blogs");
+            AuthorValidator authorValidator = new AuthorValidator();
+            ValidationResult results = authorValidator.Validate(author);
+            if (results.IsValid)
+            {
+                author.Status = true;
+                author.About = "Deneme";
+                _authService.Add(author);
+                return RedirectToAction("Index", "Blogs");
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
         }
     }
 }
