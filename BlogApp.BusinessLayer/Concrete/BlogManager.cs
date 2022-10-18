@@ -22,7 +22,8 @@ namespace BlogApp.BusinessLayer.Concrete
 
         public IResult Add(Blog blog)
         {
-            throw new NotImplementedException();
+            _blogRepository.Add(blog);
+            return new SuccessResult(Messages.BlogAdded);
         }
 
         public IResult Delete(Blog blog)

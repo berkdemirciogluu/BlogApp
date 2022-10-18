@@ -76,5 +76,7 @@ namespace BlogApp.BusinessLayer.Utilities.Messages
         public static string AboutListed = "About listed";
 
         public static string ContactAdded = "Contact added";
+
+        public static string BlogAdded = "Blog added";
     }
 }

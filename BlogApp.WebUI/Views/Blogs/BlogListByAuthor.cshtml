@@ -1,0 +1,35 @@
+﻿@using BlogApp.EntityLayer.Concrete
+@using BlogApp.CoreLayer.Utilities.Results
+@model SuccessDataResult<List<Blog>>
+
+@{
+    ViewData["Title"] = "BlogListByAuthor";
+    Layout = "~/Views/Shared/AuthorLayout.cshtml";
+}
+
+<h1>Author Blogs</h1>
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Blog Subject</th>
+        <th>Created Date</th>
+        <th>Category</th>
+        <th>Status</th>
+        <th>Delete</th>
+        <th>Edit</th>
+    </tr>
+    @foreach (var blog in Model.Data)
+    {
+        <tr>
+            <td>@blog.Id</td>
+            <td>@blog.Title</td>
+            <td>@blog.CreatedDate</td>
+            <td>@blog.CategoryId</td>
+            <td>@blog.Status</td>
+            <td><a href="#" class="btn btn-danger">Delete</a></td>
+            <td><a href="#" class="btn btn-warning">Edit</a></td>
+        </tr>
+    }
+</table>
+<a href="#" class="btn btn-primary">Add New Blog</a>
+
