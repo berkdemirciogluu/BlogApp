@@ -77,12 +77,17 @@ namespace BlogApp.WebUI.Controllers
         [HttpGet]
         public IActionResult EditBlog(int id)
         {
+            ViewBag.categoryValues = _categoryService.GetCategoryById();
             return View(_blogService.GetById(id).Data);
         }
 
         [HttpPost]
         public IActionResult EditBlog(Blog blog)
         {
+            blog.AuthorId = 1;
+            blog.CreatedDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            blog.Status = true;
+            _blogService.Update(blog);
             return RedirectToAction("BlogListByAuthor");
         }
     }

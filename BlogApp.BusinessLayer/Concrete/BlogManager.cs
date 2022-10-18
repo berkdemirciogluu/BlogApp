@@ -65,7 +65,8 @@ namespace BlogApp.BusinessLayer.Concrete
 
         public IResult Update(Blog blog)
         {
-            throw new NotImplementedException();
+            _blogRepository.Update(blog);
+            return new SuccessResult(Messages.BlogUpdated);
         }
     }
 }
