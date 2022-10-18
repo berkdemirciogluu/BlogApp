@@ -1,9 +1,11 @@
 ﻿using BlogApp.BusinessLayer.Abstract;
 using BlogApp.BusinessLayer.Utilities.ValidationRules.FluentValidation;
+using BlogApp.CoreLayer.Utilities.Results;
 using BlogApp.EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +17,12 @@ namespace BlogApp.WebUI.Controllers
     public class BlogsController : Controller
     {
         IBlogService _blogService;
+        ICategoryService _categoryService;
 
-        public BlogsController(IBlogService blogService)
+        public BlogsController(IBlogService blogService, ICategoryService categoryService)
         {
             _blogService = blogService;
+            _categoryService = categoryService;
         }
 
         public IActionResult Index()
@@ -34,11 +38,12 @@ namespace BlogApp.WebUI.Controllers
 
         public IActionResult BlogListByAuthor()
         {
-            return View(_blogService.GetBlogByAuthor(1));
+            return View(_blogService.GetBlogWithCategoryByAuthor(1));
         }
         [HttpGet]
         public IActionResult AddBlog()
         {
+            ViewBag.categoryValues = _categoryService.GetCategoryById();
             return View();
         }
         [HttpPost]
@@ -62,6 +67,12 @@ namespace BlogApp.WebUI.Controllers
                 }
             }
             return View();
+        }
+
+        public IActionResult DeleteBlog(int id)
+        {
+            _blogService.Delete(id);
+            return RedirectToAction("BlogListByAuthor");
         }
     }
 }

@@ -3,7 +3,9 @@ using BlogApp.BusinessLayer.Utilities.Messages;
 using BlogApp.CoreLayer.Utilities.Results;
 using BlogApp.DataAccessLayer.Abstract;
 using BlogApp.EntityLayer.Concrete;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BlogApp.BusinessLayer.Concrete
 {
@@ -22,9 +24,10 @@ namespace BlogApp.BusinessLayer.Concrete
             return new SuccessResult(Messages.CategoryAdded);
         }
 
-        public IResult Delete(Category category)
+        public IResult Delete(int id)
         {
-            _categoryRepository.Delete(category);
+            var categoryToDelete = _categoryRepository.GetById(id);
+            _categoryRepository.Delete(categoryToDelete);
             return new SuccessResult(Messages.CategoryDeleted);
         }
 
@@ -36,6 +39,18 @@ namespace BlogApp.BusinessLayer.Concrete
         public IDataResult<Category> GetById(int id)
         {
             return new SuccessDataResult<Category>(_categoryRepository.GetById(id), Messages.CategoryListed);
+        }
+
+        public List<SelectListItem> GetCategoryById()
+        {
+            List<SelectListItem> categoryValues = (from category in _categoryRepository.GetAll()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = category.Name,
+                                                       Value = category.Id.ToString()
+
+                                                   }).ToList();
+            return categoryValues;
         }
 
         public IResult Update(Category category)

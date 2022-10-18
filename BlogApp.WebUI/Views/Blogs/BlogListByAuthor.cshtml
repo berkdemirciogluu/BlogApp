@@ -21,12 +21,12 @@
     @foreach (var blog in Model.Data)
     {
         <tr>
-            <td>@blog.Id</td>
+            <th>@blog.Id</th>
             <td>@blog.Title</td>
-            <td>@blog.CreatedDate</td>
-            <td>@blog.CategoryId</td>
+            <td>@(((DateTime)blog.CreatedDate).ToString("dd/MMM/yyyy"))</td>
+            <td>@blog.Category.Name</td>
             <td>@blog.Status</td>
-            <td><a href="#" class="btn btn-danger">Delete</a></td>
+            <td><a href="/Blogs/DeleteBlog/@blog.Id" class="btn btn-danger">Delete</a></td>
             <td><a href="#" class="btn btn-warning">Edit</a></td>
         </tr>
     }

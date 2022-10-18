@@ -26,7 +26,7 @@ namespace BlogApp.BusinessLayer.Concrete
             return new SuccessResult(Messages.NewsLetterAdded);
         }
 
-        public IResult Delete(NewsLetter entity)
+        public IResult Delete(int id)
         {
             throw new NotImplementedException();
         }

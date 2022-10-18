@@ -26,7 +26,7 @@ namespace BlogApp.BusinessLayer.Concrete
             return new SuccessResult(Messages.CommentAdded);
         }
 
-        public IResult Delete(Comment entity)
+        public IResult Delete(int id)
         {
             throw new NotImplementedException();
         }

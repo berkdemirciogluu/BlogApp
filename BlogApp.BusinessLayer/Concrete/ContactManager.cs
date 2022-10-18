@@ -26,7 +26,7 @@ namespace BlogApp.BusinessLayer.Concrete
             return new SuccessResult(Messages.ContactAdded);
         }
 
-        public IResult Delete(Contact entity)
+        public IResult Delete(int id)
         {
             throw new NotImplementedException();
         }

@@ -26,14 +26,21 @@ namespace BlogApp.BusinessLayer.Concrete
             return new SuccessResult(Messages.BlogAdded);
         }
 
-        public IResult Delete(Blog blog)
+        public IResult Delete(int blogId)
         {
-            throw new NotImplementedException();
+            var blogToDelete = _blogRepository.GetById(blogId);
+            _blogRepository.Delete(blogToDelete);
+            return new SuccessResult(Messages.BlogDeleted);
         }
 
         public IDataResult<List<Blog>> GetAll()
         {
             return new SuccessDataResult<List<Blog>>(_blogRepository.GetAll(), Messages.BlogListed);
+        }
+
+        public IDataResult<List<Blog>> GetBlogWithCategoryByAuthor(int authorId)
+        {
+            return new SuccessDataResult<List<Blog>>(_blogRepository.GetBlogWithCategoryByAuthor(authorId), Messages.BlogListed);
         }
 
         public IDataResult<List<Blog>> GetLast3Blogs()

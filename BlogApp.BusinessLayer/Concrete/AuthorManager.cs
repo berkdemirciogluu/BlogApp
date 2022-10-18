@@ -26,7 +26,7 @@ namespace BlogApp.BusinessLayer.Concrete
             return new SuccessResult(Messages.AuthorAdded);
         }
 
-        public IResult Delete(Author entity)
+        public IResult Delete(int id)
         {
             throw new NotImplementedException();
         }

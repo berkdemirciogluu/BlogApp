@@ -20,5 +20,13 @@ namespace BlogApp.DataAccessLayer.Concrete.EnitityFrameworkCore
                 return context.Blogs.Include(x => x.Category).ToList();
             }
         }
+
+        public List<Blog> GetBlogWithCategoryByAuthor(int authorId)
+        {
+            using (DatabaseContext context = new DatabaseContext())
+            {
+                return context.Blogs.Include(x => x.Category).Where(x=>x.AuthorId == authorId).ToList();
+            }
+        }
     }
 }

@@ -13,5 +13,6 @@ namespace BlogApp.BusinessLayer.Abstract
         IDataResult<List<Blog>> GetLast3Blogs();
         IDataResult<List<Blog>> GetBlogWithCategory();
         IDataResult<List<Blog>> GetBlogByAuthor(int authorId);
+        IDataResult<List<Blog>> GetBlogWithCategoryByAuthor(int authorId);
     }
 }

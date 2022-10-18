@@ -25,7 +25,7 @@ namespace BlogApp.BusinessLayer.Concrete
             throw new NotImplementedException();
         }
 
-        public IResult Delete(About entity)
+        public IResult Delete(int id)
         {
             throw new NotImplementedException();
         }

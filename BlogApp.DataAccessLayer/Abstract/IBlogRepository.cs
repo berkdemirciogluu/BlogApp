@@ -10,6 +10,8 @@ namespace BlogApp.DataAccessLayer.Abstract
     public interface IBlogRepository : IGenericRepository<Blog>
     {
         List<Blog> GetBlogWithCategory();
+        List<Blog> GetBlogWithCategoryByAuthor(int authorId);
+
 
     }
 }
