@@ -1,0 +1,45 @@
+﻿@using BlogApp.EntityLayer.Concrete
+@using BlogApp.CoreLayer.Utilities.Results
+@model SuccessDataResult<List<Blog>>
+<div class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Last 10 Blogs</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th> # </th>
+                                <th> Title </th>
+                                <th> Category </th>
+                                <th> Created Date </th>
+                                <th> Details </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var blog in Model.Data)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="@blog.Image" class="mr-2" alt="image"> 
+                                        </td>
+                                        <td>
+                                        @blog.Title
+                                    </td>
+                                    <td>
+                                        <label class="badge badge-gradient-success">@blog.Category.Name</label>
+                                    </td>
+                                    <td>@(((DateTime)blog.CreatedDate).ToString("dd/MMM/yyyy"))</td>
+                                    <td>
+                                        <a href="/Blogs/BlogDetails/@blog.Id" class="btn btn-dark">Details</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
