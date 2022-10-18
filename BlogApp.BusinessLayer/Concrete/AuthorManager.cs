@@ -38,7 +38,7 @@ namespace BlogApp.BusinessLayer.Concrete
 
         public IDataResult<Author> GetById(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Author>(_authorRepository.GetById(id), Messages.AuthorListed);
         }
 
         public IResult Update(Author entity)
