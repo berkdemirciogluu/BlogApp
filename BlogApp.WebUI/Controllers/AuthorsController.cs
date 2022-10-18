@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using BlogApp.BusinessLayer.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,13 @@ namespace BlogApp.WebUI.Controllers
 {
     public class AuthorsController : Controller
     {
+        IAuthorService _authorService;
+
+        public AuthorsController(IAuthorService authorService)
+        {
+            _authorService = authorService;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -28,6 +36,11 @@ namespace BlogApp.WebUI.Controllers
         public PartialViewResult AuthorFooterPartial()
         {
             return PartialView();
+        }
+        [AllowAnonymous]
+        public IActionResult AuthorEditProfile()
+        {
+            return View(_authorService.GetById(1));
         }
     }
 }
