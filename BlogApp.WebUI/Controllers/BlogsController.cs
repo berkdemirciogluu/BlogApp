@@ -1,4 +1,5 @@
 ﻿using BlogApp.BusinessLayer.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlogApp.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class BlogsController : Controller
     {
         IBlogService _blogService;

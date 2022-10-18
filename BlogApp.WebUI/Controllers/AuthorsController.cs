@@ -9,10 +9,25 @@ namespace BlogApp.WebUI.Controllers
 {
     public class AuthorsController : Controller
     {
-        [Authorize]
         public IActionResult Index()
         {
             return View();
+        }
+
+        [AllowAnonymous]
+        public IActionResult Test()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        public PartialViewResult AuthorNavbarPartial()
+        {
+            return PartialView();
+        }
+        [AllowAnonymous]
+        public PartialViewResult AuthorFooterPartial()
+        {
+            return PartialView();
         }
     }
 }

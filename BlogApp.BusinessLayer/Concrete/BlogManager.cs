@@ -35,6 +35,11 @@ namespace BlogApp.BusinessLayer.Concrete
             return new SuccessDataResult<List<Blog>>(_blogRepository.GetAll(), Messages.BlogListed);
         }
 
+        public IDataResult<List<Blog>> GetLast3Blogs()
+        {
+            return new SuccessDataResult<List<Blog>>(_blogRepository.GetAll().Take(3).ToList(), Messages.BlogListed);
+        }
+
         public IDataResult<List<Blog>> GetBlogByAuthor(int authorId)
         {
             return new SuccessDataResult<List<Blog>>(_blogRepository.GetAll(b => b.AuthorId == authorId), Messages.BlogListed);

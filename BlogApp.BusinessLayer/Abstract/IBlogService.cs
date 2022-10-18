@@ -11,6 +11,7 @@ namespace BlogApp.BusinessLayer.Abstract
     public interface IBlogService
     {
         IDataResult<List<Blog>> GetAll();
+        IDataResult<List<Blog>> GetLast3Blogs();
         IDataResult<List<Blog>> GetBlogWithCategory();
         IDataResult<List<Blog>> GetBlogByAuthor(int authorId);
         IDataResult<Blog> GetById(int id);
