@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace BlogApp.WebUI.ViewComponents.Author
 {
-    public class AuthorMessageNotification : ViewComponent
+    public class AuthorNotification : ViewComponent
     {
         IAuthorService _authorService;
 
-        public AuthorMessageNotification(IAuthorService authorService)
+        public AuthorNotification(IAuthorService authorService)
         {
             _authorService = authorService;
         }

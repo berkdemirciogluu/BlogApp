@@ -25,5 +25,25 @@ namespace BlogApp.BusinessLayer.Concrete
             _authorRepository.Add(author);
             return new SuccessResult(Messages.AuthorAdded);
         }
+
+        public IResult Delete(Author entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDataResult<List<Author>> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDataResult<Author> GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IResult Update(Author entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

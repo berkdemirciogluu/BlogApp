@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlogApp.BusinessLayer.Abstract
 {
-    public interface IAuthorService
+    public interface IAuthorService : IBaseService<Author>
     {
-        IResult Add(Author author);
     }
 }

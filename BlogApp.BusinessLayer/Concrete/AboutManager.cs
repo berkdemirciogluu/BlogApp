@@ -20,9 +20,29 @@ namespace BlogApp.BusinessLayer.Concrete
             _aboutRepository = aboutRepository;
         }
 
+        public IResult Add(About entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IResult Delete(About entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public IDataResult<List<About>> GetAll()
         {
             return new SuccessDataResult<List<About>>(_aboutRepository.GetAll(), Messages.AboutListed);
+        }
+
+        public IDataResult<About> GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IResult Update(About entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

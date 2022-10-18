@@ -8,13 +8,8 @@ using System.Threading.Tasks;
 
 namespace BlogApp.BusinessLayer.Abstract
 {
-    public interface ICommentService
+    public interface ICommentService : IBaseService<Comment>
     {
-        IDataResult<List<Comment>> GetAll();
-        IDataResult<Comment> GetById(int id);
-        IResult Add(Comment comment);
-        //IResult Delete(Comment comment);
-        //IResult Update(Comment comment);
         IDataResult<List<Comment>> GetCommentsByBlogId(int blogId);
         
     }

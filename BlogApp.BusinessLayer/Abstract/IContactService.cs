@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlogApp.BusinessLayer.Abstract
 {
-    public interface IContactService
+    public interface IContactService : IBaseService<Contact>
     {
         IResult Add(Contact contact);
     }

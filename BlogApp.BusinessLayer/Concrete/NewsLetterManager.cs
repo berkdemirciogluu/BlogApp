@@ -25,5 +25,25 @@ namespace BlogApp.BusinessLayer.Concrete
             _newsLetterRepository.Add(newsLetter);
             return new SuccessResult(Messages.NewsLetterAdded);
         }
+
+        public IResult Delete(NewsLetter entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDataResult<List<NewsLetter>> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDataResult<NewsLetter> GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IResult Update(NewsLetter entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

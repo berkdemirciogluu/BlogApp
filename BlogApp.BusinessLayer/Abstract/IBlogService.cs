@@ -8,15 +8,10 @@ using System.Threading.Tasks;
 
 namespace BlogApp.BusinessLayer.Abstract
 {
-    public interface IBlogService
+    public interface IBlogService : IBaseService<Blog>
     {
-        IDataResult<List<Blog>> GetAll();
         IDataResult<List<Blog>> GetLast3Blogs();
         IDataResult<List<Blog>> GetBlogWithCategory();
         IDataResult<List<Blog>> GetBlogByAuthor(int authorId);
-        IDataResult<Blog> GetById(int id);
-        IResult Add(Blog blog);
-        IResult Delete(Blog blog);
-        IResult Update(Blog blog);
     }
 }

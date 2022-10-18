@@ -26,6 +26,11 @@ namespace BlogApp.BusinessLayer.Concrete
             return new SuccessResult(Messages.CommentAdded);
         }
 
+        public IResult Delete(Comment entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public IDataResult<List<Comment>> GetAll()
         {
             return new SuccessDataResult<List<Comment>>(_commentRepository.GetAll(), Messages.CommentListed);
@@ -39,6 +44,11 @@ namespace BlogApp.BusinessLayer.Concrete
         public IDataResult<List<Comment>> GetCommentsByBlogId(int blogId)
         {
             return new SuccessDataResult<List<Comment>>(_commentRepository.GetAll(x=>x.BlogId == blogId), Messages.CommentListed);
+        }
+
+        public IResult Update(Comment entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

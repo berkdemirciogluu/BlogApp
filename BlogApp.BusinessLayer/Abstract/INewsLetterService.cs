@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlogApp.BusinessLayer.Abstract
 {
-    public interface INewsLetterService
+    public interface INewsLetterService : IBaseService<NewsLetter>
     {
-        IResult Add(NewsLetter newsLetter);
     }
 }

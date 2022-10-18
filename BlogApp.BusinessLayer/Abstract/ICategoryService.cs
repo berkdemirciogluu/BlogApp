@@ -8,12 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlogApp.BusinessLayer.Abstract
 {
-    public interface ICategoryService
+    public interface ICategoryService : IBaseService<Category>
     {
-        IDataResult<List<Category>> GetAll();
-        IDataResult<Category> GetById(int id);
-        IResult Add(Category category);
-        IResult Delete(Category category);
-        IResult Update(Category category);
     }
 }
