@@ -1,0 +1,33 @@
+﻿@using BlogApp.EntityLayer.Concrete
+@model Blog
+@{
+    ViewData["Title"] = "EditBlog";
+    Layout = "~/Views/Shared/AuthorLayout.cshtml";
+}
+
+<h1>Edit Blog</h1>
+<br />
+@using (Html.BeginForm("EditBlog", "Blogs", FormMethod.Post))
+{
+    @Html.Label("Blog ID")
+    @Html.TextBoxFor(x => x.Id, new { @class = "form-control" })
+    <br />
+    @Html.Label("Blog Title")
+    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+    <br />
+    @Html.Label("Blog Thumbnail")
+    @Html.TextBoxFor(x => x.ThumbNailImage, new { @class = "form-control" })
+    <br />
+    @Html.Label("Blog Image")
+    @Html.TextBoxFor(x => x.Image, new { @class = "form-control" })
+    <br />
+    @Html.Label("Blog Category")
+    @Html.TextBoxFor(x => x.CategoryId, new { @class = "form-control" })
+    <br />
+    @Html.Label("Blog Content")
+    @Html.TextAreaFor(x => x.Content, 10, 3, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-success">EDIT</button>
+
+}
+
