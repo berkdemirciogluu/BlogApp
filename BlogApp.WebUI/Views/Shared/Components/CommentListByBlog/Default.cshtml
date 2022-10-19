@@ -1,10 +1,9 @@
 ﻿@using BlogApp.EntityLayer.Concrete
-@using BlogApp.CoreLayer.Utilities.Results
-@model IDataResult<List<Comment>>
+@model List<Comment>
 
 <div class="comment-top">
     <h4>Comments</h4>
-    @foreach (var comment in Model.Data)
+    @foreach (var comment in Model)
     {
         <div class="media">
             <img src="~/BlogAppThema/images/t1.jpg" alt="" class="img-fluid" />

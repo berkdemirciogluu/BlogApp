@@ -1,6 +1,5 @@
 ﻿@using BlogApp.EntityLayer.Concrete
-@using BlogApp.CoreLayer.Utilities.Results
-@model SuccessDataResult<List<About>>
+@model List<About>
 
 @{
     ViewData["Title"] = "Index";
@@ -28,7 +27,7 @@
                         <h3>
                             Who we are ?
                         </h3>
-                        @foreach (var about in Model.Data)
+                        @foreach (var about in Model)
                         {
                             <p>
                                 @about.Details1

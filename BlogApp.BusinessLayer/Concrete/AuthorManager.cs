@@ -20,30 +20,29 @@ namespace BlogApp.BusinessLayer.Concrete
             _authorRepository = authorRepository;
         }
 
-        public IResult Add(Author author)
+        public void Add(Author author)
         {
             _authorRepository.Add(author);
-            return new SuccessResult(Messages.AuthorAdded);
         }
 
-        public IResult Delete(int id)
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IDataResult<List<Author>> GetAll()
+        public List<Author> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public IDataResult<Author> GetById(int id)
+        public Author GetById(int id)
         {
-            return new SuccessDataResult<Author>(_authorRepository.GetById(id), Messages.AuthorListed);
+            return _authorRepository.GetById(id);
         }
 
-        public IResult Update(Author entity)
+        public void Update(Author entity)
         {
-            throw new NotImplementedException();
+            _authorRepository.Update(entity);
         }
     }
 }

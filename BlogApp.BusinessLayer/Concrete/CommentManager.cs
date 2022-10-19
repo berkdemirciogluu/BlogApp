@@ -20,33 +20,32 @@ namespace BlogApp.BusinessLayer.Concrete
             _commentRepository = commentRepository;
         }
 
-        public IResult Add(Comment comment)
+        public void Add(Comment comment)
         {
             _commentRepository.Add(comment);
-            return new SuccessResult(Messages.CommentAdded);
         }
 
-        public IResult Delete(int id)
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IDataResult<List<Comment>> GetAll()
+        public List<Comment> GetAll()
         {
-            return new SuccessDataResult<List<Comment>>(_commentRepository.GetAll(), Messages.CommentListed);
+            return _commentRepository.GetAll();
         }
 
-        public IDataResult<Comment> GetById(int id)
+        public Comment GetById(int id)
         {
-            return new SuccessDataResult<Comment>(_commentRepository.GetById(id), Messages.CommentListed);
+            return _commentRepository.GetById(id);
         }
 
-        public IDataResult<List<Comment>> GetCommentsByBlogId(int blogId)
+        public List<Comment> GetCommentsByBlogId(int blogId)
         {
-            return new SuccessDataResult<List<Comment>>(_commentRepository.GetAll(x=>x.BlogId == blogId), Messages.CommentListed);
+            return _commentRepository.GetAll(x=>x.BlogId == blogId);
         }
 
-        public IResult Update(Comment entity)
+        public void Update(Comment entity)
         {
             throw new NotImplementedException();
         }

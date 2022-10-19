@@ -20,28 +20,27 @@ namespace BlogApp.BusinessLayer.Concrete
             _contactRepository = contactRepository;
         }
 
-        public IResult Add(Contact contact)
+        public void Add(Contact contact)
         {
             _contactRepository.Add(contact);
-            return new SuccessResult(Messages.ContactAdded);
         }
 
-        public IResult Delete(int id)
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IDataResult<List<Contact>> GetAll()
+        public List<Contact> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public IDataResult<Contact> GetById(int id)
+        public Contact GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IResult Update(Contact entity)
+        public void Update(Contact entity)
         {
             throw new NotImplementedException();
         }

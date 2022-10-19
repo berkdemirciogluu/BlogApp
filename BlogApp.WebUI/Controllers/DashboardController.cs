@@ -22,9 +22,9 @@ namespace BlogApp.WebUI.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
-            ViewBag.BlogCount = _blogService.GetAll().Data.Count().ToString();
-            ViewBag.AuthorBlogCount = _blogService.GetBlogByAuthor(1).Data.Count().ToString();
-            ViewBag.CategoryCount = _categoryService.GetAll().Data.Count().ToString();
+            ViewBag.BlogCount = _blogService.GetAll().Count().ToString();
+            ViewBag.AuthorBlogCount = _blogService.GetBlogByAuthor(1).Count().ToString();
+            ViewBag.CategoryCount = _categoryService.GetAll().Count().ToString();
             return View();
         }
     }

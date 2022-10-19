@@ -10,6 +10,6 @@ namespace BlogApp.BusinessLayer.Abstract
 {
     public interface IContactService : IBaseService<Contact>
     {
-        IResult Add(Contact contact);
+
     }
 }

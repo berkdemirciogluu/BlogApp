@@ -20,53 +20,50 @@ namespace BlogApp.BusinessLayer.Concrete
             _blogRepository = blogRepository;
         }
 
-        public IResult Add(Blog blog)
+        public void Add(Blog blog)
         {
             _blogRepository.Add(blog);
-            return new SuccessResult(Messages.BlogAdded);
         }
 
-        public IResult Delete(int blogId)
+        public void Delete(int blogId)
         {
             var blogToDelete = _blogRepository.GetById(blogId);
             _blogRepository.Delete(blogToDelete);
-            return new SuccessResult(Messages.BlogDeleted);
         }
 
-        public IDataResult<List<Blog>> GetAll()
+        public List<Blog> GetAll()
         {
-            return new SuccessDataResult<List<Blog>>(_blogRepository.GetAll(), Messages.BlogListed);
+            return _blogRepository.GetAll();
         }
 
-        public IDataResult<List<Blog>> GetBlogWithCategoryByAuthor(int authorId)
+        public List<Blog> GetBlogWithCategoryByAuthor(int authorId)
         {
-            return new SuccessDataResult<List<Blog>>(_blogRepository.GetBlogWithCategoryByAuthor(authorId), Messages.BlogListed);
+            return _blogRepository.GetBlogWithCategoryByAuthor(authorId);
         }
 
-        public IDataResult<List<Blog>> GetLast3Blogs()
+        public List<Blog> GetLast3Blogs()
         {
-            return new SuccessDataResult<List<Blog>>(_blogRepository.GetAll().Take(3).ToList(), Messages.BlogListed);
+            return _blogRepository.GetAll().Take(3).ToList();
         }
 
-        public IDataResult<List<Blog>> GetBlogByAuthor(int authorId)
+        public List<Blog> GetBlogByAuthor(int authorId)
         {
-            return new SuccessDataResult<List<Blog>>(_blogRepository.GetAll(b => b.AuthorId == authorId), Messages.BlogListed);
+            return _blogRepository.GetAll(b => b.AuthorId == authorId);
         }
 
-        public IDataResult<List<Blog>> GetBlogWithCategory()
+        public List<Blog> GetBlogWithCategory()
         {
-            return new SuccessDataResult<List<Blog>>(_blogRepository.GetBlogWithCategory(), Messages.BlogListed);
+            return _blogRepository.GetBlogWithCategory();
         }
 
-        public IDataResult<Blog> GetById(int id)
+        public Blog GetById(int id)
         {
-            return new SuccessDataResult<Blog>(_blogRepository.GetById(id), Messages.BlogListed);
+            return _blogRepository.GetById(id);
         }
 
-        public IResult Update(Blog blog)
+        public void Update(Blog blog)
         {
             _blogRepository.Update(blog);
-            return new SuccessResult(Messages.BlogUpdated);
         }
     }
 }

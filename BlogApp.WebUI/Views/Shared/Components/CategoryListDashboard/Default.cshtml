@@ -1,6 +1,5 @@
 ﻿@using BlogApp.EntityLayer.Concrete
-@using BlogApp.CoreLayer.Utilities.Results
-@model IDataResult<List<Category>>
+@model List<Category>
 <div class="row">
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
@@ -17,7 +16,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var category in Model.Data)
+                            @foreach (var category in Model)
                             {
                                 <tr>
                                     <td> @category.Id </td>

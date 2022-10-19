@@ -9,10 +9,10 @@ namespace BlogApp.BusinessLayer.Abstract
 {
     public interface IBaseService<T>
     {
-        IDataResult<List<T>> GetAll();
-        IDataResult<T> GetById(int id);
-        IResult Add(T entity);
-        IResult Delete(int id);
-        IResult Update(T entity);
+        List<T> GetAll();
+        T GetById(int id);
+        void Add(T entity);
+        void Delete(int id);
+        void Update(T entity);
     }
 }

@@ -1,11 +1,10 @@
 ﻿@using BlogApp.EntityLayer.Concrete
-@using BlogApp.CoreLayer.Utilities.Results
-@model SuccessDataResult<List<Blog>>
+@model List<Blog>
 
 <div class="tech-btm">
     <h4>Other Articles By Author</h4>
 
-    @foreach (var blog in Model.Data)
+    @foreach (var blog in Model)
     {
         <div class="blog-grids row mb-3">
             <div class="col-md-5 blog-grid-left">

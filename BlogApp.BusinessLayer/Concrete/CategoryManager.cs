@@ -17,28 +17,26 @@ namespace BlogApp.BusinessLayer.Concrete
             _categoryRepository = categoryRepository;
         }
 
-        public IResult Add(Category category)
+        public void Add(Category category)
         {
 
             _categoryRepository.Add(category);
-            return new SuccessResult(Messages.CategoryAdded);
         }
 
-        public IResult Delete(int id)
+        public void Delete(int id)
         {
             var categoryToDelete = _categoryRepository.GetById(id);
             _categoryRepository.Delete(categoryToDelete);
-            return new SuccessResult(Messages.CategoryDeleted);
         }
 
-        public IDataResult<List<Category>> GetAll()
+        public List<Category> GetAll()
         {
-            return new SuccessDataResult<List<Category>>(_categoryRepository.GetAll(), Messages.CategoryListed);
+            return _categoryRepository.GetAll();
         }
 
-        public IDataResult<Category> GetById(int id)
+        public Category GetById(int id)
         {
-            return new SuccessDataResult<Category>(_categoryRepository.GetById(id), Messages.CategoryListed);
+            return _categoryRepository.GetById(id);
         }
 
         public List<SelectListItem> GetCategoryById()
@@ -53,10 +51,9 @@ namespace BlogApp.BusinessLayer.Concrete
             return categoryValues;
         }
 
-        public IResult Update(Category category)
+        public void Update(Category category)
         {
             _categoryRepository.Update(category);
-            return new SuccessResult(Messages.CategoryUpdated);
         }
     }
 }

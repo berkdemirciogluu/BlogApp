@@ -1,6 +1,5 @@
 ﻿@using BlogApp.EntityLayer.Concrete
-@using BlogApp.CoreLayer.Utilities.Results
-@model SuccessDataResult<List<Blog>>
+@model List<Blog>
 
 @{
     ViewData["Title"] = "BlogListByAuthor";
@@ -18,7 +17,7 @@
         <th>Delete</th>
         <th>Edit</th>
     </tr>
-    @foreach (var blog in Model.Data)
+    @foreach (var blog in Model)
     {
         <tr>
             <th>@blog.Id</th>

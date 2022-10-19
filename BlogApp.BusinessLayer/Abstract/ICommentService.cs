@@ -10,7 +10,7 @@ namespace BlogApp.BusinessLayer.Abstract
 {
     public interface ICommentService : IBaseService<Comment>
     {
-        IDataResult<List<Comment>> GetCommentsByBlogId(int blogId);
+        List<Comment> GetCommentsByBlogId(int blogId);
         
     }
 }

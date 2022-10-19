@@ -78,7 +78,7 @@ namespace BlogApp.WebUI.Controllers
         public IActionResult EditBlog(int id)
         {
             ViewBag.categoryValues = _categoryService.GetCategoryById();
-            return View(_blogService.GetById(id).Data);
+            return View(_blogService.GetById(id));
         }
 
         [HttpPost]

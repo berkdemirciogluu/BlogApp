@@ -20,27 +20,27 @@ namespace BlogApp.BusinessLayer.Concrete
             _aboutRepository = aboutRepository;
         }
 
-        public IResult Add(About entity)
+        public void Add(About entity)
         {
             throw new NotImplementedException();
         }
 
-        public IResult Delete(int id)
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IDataResult<List<About>> GetAll()
+        public List<About> GetAll()
         {
-            return new SuccessDataResult<List<About>>(_aboutRepository.GetAll(), Messages.AboutListed);
+            return _aboutRepository.GetAll();
         }
 
-        public IDataResult<About> GetById(int id)
+        public About GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IResult Update(About entity)
+        public void Update(About entity)
         {
             throw new NotImplementedException();
         }

@@ -1,6 +1,5 @@
 ﻿@using BlogApp.EntityLayer.Concrete
-@using BlogApp.CoreLayer.Utilities.Results
-@model SuccessDataResult<Blog>
+@model Blog
 @{
     ViewData["Title"] = "BlogDetails";
     Layout = "~/Views/Shared/UserLayout.cshtml";
@@ -26,7 +25,7 @@
                                 <ul>
                                     <li>
                                         <a href="#">
-                                            <i class="far fa-calendar-alt"></i> @(((DateTime)Model.Data.CreatedDate).ToString("dd/MMM/yyyy"))
+                                            <i class="far fa-calendar-alt"></i> @(((DateTime)Model.CreatedDate).ToString("dd/MMM/yyyy"))
                                         </a>
                                     </li>
                                     <li class="mx-2">
@@ -45,10 +44,10 @@
                         </div>
 
                         <h3>
-                            <a href="/Blogs/BlogDetails/@Model.Data.Id/">@Model.Data.Title</a>
+                            <a href="/Blogs/BlogDetails/@Model.Id/">@Model.Title</a>
                         </h3>
                         <p>
-                            @Model.Data.Content
+                            @Model.Content
                         </p>
                         <a href="/Blogs/Index/" class="btn btn-primary read-m">All Blogs</a>
                     </div>

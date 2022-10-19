@@ -10,9 +10,9 @@ namespace BlogApp.BusinessLayer.Abstract
 {
     public interface IBlogService : IBaseService<Blog>
     {
-        IDataResult<List<Blog>> GetLast3Blogs();
-        IDataResult<List<Blog>> GetBlogWithCategory();
-        IDataResult<List<Blog>> GetBlogByAuthor(int authorId);
-        IDataResult<List<Blog>> GetBlogWithCategoryByAuthor(int authorId);
+        List<Blog> GetLast3Blogs();
+        List<Blog> GetBlogWithCategory();
+        List<Blog> GetBlogByAuthor(int authorId);
+        List<Blog> GetBlogWithCategoryByAuthor(int authorId);
     }
 }

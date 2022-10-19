@@ -1,6 +1,5 @@
 ﻿@using BlogApp.EntityLayer.Concrete
-@using BlogApp.CoreLayer.Utilities.Results
-@model SuccessDataResult<List<Blog>>
+@model List<Blog>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/UserLayout.cshtml";
@@ -12,7 +11,7 @@
             <!--left-->
             <div class="left-blog-info-w3layouts-agileits text-left">
                 <div class="row">
-                    @foreach (var blog in Model.Data)
+                    @foreach (var blog in Model)
                     {
                         <div class="col-lg-4 card">
                             <a href="single.html">

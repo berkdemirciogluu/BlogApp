@@ -82,5 +82,6 @@ namespace BlogApp.BusinessLayer.Utilities.Messages
         public static string BlogDeleted { get; internal set; }
         public static string BlogUpdated { get; internal set; }
         public static string AuthorListed { get; internal set; }
+        public static string AuthorUpdated { get; internal set; }
     }
 }
