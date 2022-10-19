@@ -9,16 +9,16 @@ namespace BlogApp.WebUI.ViewComponents.Author
 {
     public class AuthorNotification : ViewComponent
     {
-        IAuthorService _authorService;
+        INotificationService _notificationService;
 
-        public AuthorNotification(IAuthorService authorService)
+        public AuthorNotification(INotificationService notificationService)
         {
-            _authorService = authorService;
+            _notificationService = notificationService;
         }
 
         public IViewComponentResult Invoke()
         {
-            return View();
+            return View(_notificationService.GetAll());
         }
     }
 }

@@ -19,6 +19,7 @@ namespace BlogApp.BusinessLayer.Utilities.DependencyContainers
             services.AddScoped<IContactService, ContactManager>();
             services.AddScoped<ICommentService, CommentManager>();
             services.AddScoped<INewsLetterService, NewsLetterManager>();
+            services.AddScoped<INotificationService, NotificationManager>();
             services.AddScoped<IAboutService, AboutManager>();
         }
     }
