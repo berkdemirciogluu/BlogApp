@@ -1,0 +1,28 @@
+﻿@using BlogApp.EntityLayer.Concrete
+@model List<Message2>
+@{
+    ViewData["Title"] = "Inbox";
+    Layout = "~/Views/Shared/AuthorLayout.cshtml";
+}
+
+<h1>Inbox</h1>
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Subject</th>
+        <th>From</th>
+        <th>Date</th>
+        <th>See Message</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <th>@item.Id</th>
+    <td>@item.Subject</td>
+    <td>@item.AuthorSender.Name</td>
+    <td>@(((DateTime)item.Date).ToString("dd/MMM/yyyy"))</td>
+    <td><a href="/Message/MessageDetails/@item.Id" class="btn btn-warning">See Message</a></td>
+</tr>}
+</table>
+<a href="/Blogs/AddBlog/" class="btn btn-primary">Create New Message</a>
+

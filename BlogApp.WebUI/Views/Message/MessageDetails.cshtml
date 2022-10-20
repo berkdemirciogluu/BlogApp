@@ -1,0 +1,19 @@
+﻿@using BlogApp.EntityLayer.Concrete
+@model Message2
+@{ ViewData["Title"] = "MessageDetails";
+                Layout = "~/Views/Shared/AuthorLayout.cshtml"; }
+
+<h1>Message Details</h1>
+<br />
+@Html.Label("Message ID")
+@Html.TextBoxFor(x => x.Id, new { @class = "form-control" })
+<br />
+@Html.Label("Subject")
+@Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })
+<br />
+@Html.Label("Content")
+@Html.TextAreaFor(x => x.Details,20,3, new { @class = "form-control" })
+<br />
+<button class="btn btn-success">Go to Messages</button>
+
+

@@ -18,5 +18,8 @@ namespace BlogApp.EntityLayer.Concrete
         public string Password { get; set; }
         public bool Status { get; set; }
         public ICollection<Blog> Blogs { get; set; }
+        public virtual ICollection<Message2> AuthorSenders { get; set; }
+        public virtual ICollection<Message2> AuthorReceivers { get; set; }
+        
     }
 }

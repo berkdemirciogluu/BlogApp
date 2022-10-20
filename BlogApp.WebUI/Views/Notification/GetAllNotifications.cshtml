@@ -1,0 +1,24 @@
+﻿@using BlogApp.EntityLayer.Concrete
+@model List<Notification>
+@{
+    ViewData["Title"] = "GetAllNotifications";
+    Layout = "~/Views/Shared/AuthorLayout.cshtml";
+}
+
+<h1>Notifications</h1>
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Notifications</th>
+        <th>Date</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Details</td>
+            <td>@item.Date.ToShortDateString()</td>
+        </tr>
+    }
+</table>
+
