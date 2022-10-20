@@ -1,0 +1,26 @@
+﻿@using BlogApp.EntityLayer.Concrete
+@model List<Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Category Name</th>
+        <th>Make Inactive</th>
+        <th>Make Active</th>
+        <th>Edit</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.Id</th>
+            <td>@item.Name</td>
+            <td><a href="#" class="btn btn-danger">Make Inactive</a></td>
+            <td><a href="#" class="btn btn-warning">Make Active</a></td>
+            <td><a href="#" class="btn btn-success">Edit</a></td>
+        </tr>
+    }
+</table>

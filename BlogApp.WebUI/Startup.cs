@@ -65,7 +65,7 @@ namespace BlogApp.WebUI
                 app.UseHsts();
             }
 
-            app.UseStatusCodePagesWithReExecute("/ErrorPages/Error1","?code={0}");
+            app.UseStatusCodePagesWithReExecute("/ErrorPages/Error1", "?code={0}");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -77,8 +77,13 @@ namespace BlogApp.WebUI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                name: "areas",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+            );
+
+                endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
