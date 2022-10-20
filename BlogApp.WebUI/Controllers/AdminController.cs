@@ -12,5 +12,9 @@ namespace BlogApp.WebUI.Controllers
         {
             return View();
         }
+        public PartialViewResult AdminNavbarPartial()
+        {
+            return PartialView();
+        }
     }
 }
