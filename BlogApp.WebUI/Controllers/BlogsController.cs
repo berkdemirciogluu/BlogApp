@@ -13,16 +13,17 @@ using System.Threading.Tasks;
 
 namespace BlogApp.WebUI.Controllers
 {
-    [AllowAnonymous]
     public class BlogsController : Controller
     {
         IBlogService _blogService;
         ICategoryService _categoryService;
+        IAuthorService _authorService;
 
-        public BlogsController(IBlogService blogService, ICategoryService categoryService)
+        public BlogsController(IBlogService blogService, ICategoryService categoryService, IAuthorService authorService)
         {
             _blogService = blogService;
             _categoryService = categoryService;
+            _authorService = authorService;
         }
 
         public IActionResult Index()
@@ -38,7 +39,9 @@ namespace BlogApp.WebUI.Controllers
 
         public IActionResult BlogListByAuthor()
         {
-            return View(_blogService.GetBlogWithCategoryByAuthor(1));
+            var userMail = User.Identity.Name;
+            var userId = _authorService.GetAll().Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
+            return View(_blogService.GetBlogWithCategoryByAuthor(userId));
         }
         [HttpGet]
         public IActionResult AddBlog()
@@ -49,13 +52,15 @@ namespace BlogApp.WebUI.Controllers
         [HttpPost]
         public IActionResult AddBlog(Blog blog)
         {
+            var userMail = User.Identity.Name;
+            var userId = _authorService.GetAll().Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
             BlogValidator authorValidator = new BlogValidator();
             ValidationResult results = authorValidator.Validate(blog);
             if (results.IsValid)
             {
                 blog.Status = true;
                 blog.CreatedDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-                blog.AuthorId = 1;
+                blog.AuthorId = userId;
                 _blogService.Add(blog);
                 return RedirectToAction("BlogListByAuthor", "Blogs");
             }
@@ -84,7 +89,9 @@ namespace BlogApp.WebUI.Controllers
         [HttpPost]
         public IActionResult EditBlog(Blog blog)
         {
-            blog.AuthorId = 1;
+            var userMail = User.Identity.Name;
+            var userId = _authorService.GetAll().Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
+            blog.AuthorId = userId;
             blog.CreatedDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             blog.Status = true;
             _blogService.Update(blog);

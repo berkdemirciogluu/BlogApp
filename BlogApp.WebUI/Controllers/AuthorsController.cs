@@ -21,9 +21,12 @@ namespace BlogApp.WebUI.Controllers
         {
             _authorService = authorService;
         }
-
+        [Authorize]
         public IActionResult Index()
         {
+            var userMail = User.Identity.Name;
+            ViewBag.userMail = userMail;
+            ViewBag.userName = _authorService.GetAll().Where(x => x.Email == userMail).Select(y => y.Name).FirstOrDefault();
             return View();
         }
 
@@ -42,14 +45,15 @@ namespace BlogApp.WebUI.Controllers
         {
             return PartialView();
         }
-        [AllowAnonymous]
+
         [HttpGet]
         public IActionResult AuthorEditProfile()
         {
-            return View(_authorService.GetById(1));
+            var userMail = User.Identity.Name;
+            var userId = _authorService.GetAll().Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
+            return View(_authorService.GetById(userId));
         }
 
-        [AllowAnonymous]
         [HttpPost]        
         public IActionResult AuthorEditProfile(Author author)
         {

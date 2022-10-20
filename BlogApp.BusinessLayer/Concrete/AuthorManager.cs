@@ -32,7 +32,7 @@ namespace BlogApp.BusinessLayer.Concrete
 
         public List<Author> GetAll()
         {
-            throw new NotImplementedException();
+            return _authorRepository.GetAll();
         }
 
         public Author GetById(int id)

@@ -19,7 +19,6 @@ namespace BlogApp.WebUI.Controllers
             _categoryService = categoryService;
         }
 
-        [AllowAnonymous]
         public IActionResult Index()
         {
             ViewBag.BlogCount = _blogService.GetAll().Count().ToString();

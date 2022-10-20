@@ -18,7 +18,9 @@ namespace BlogApp.WebUI.ViewComponents.Author
 
         public IViewComponentResult Invoke()
         {
-            return View(_authorService.GetById(1));
+            var userMail = User.Identity.Name;
+            var userId = _authorService.GetAll().Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
+            return View(_authorService.GetById(userId));
         }
     }
 }
