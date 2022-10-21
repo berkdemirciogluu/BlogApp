@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Writer Ajax Operations</h1>
+<br />
+<button type="button" id="btngetlist" class="btn btn-outline-primary">Writer List</button>
+<button type="button" id="btngetbyid" class="btn btn-outline-success">Get Writer</button>
+<br />
+<br />
+<div id="writerlist">
+
+</div>
+<br />
+<div id="writerget">
+
+</div>
+<br />
+<div>
+    <input type="text" id="writerId" placeholder="Enter Writer ID" class="form-control" />
+</div>
+@section scripts {
+    <script>
+        $("#btngetlist").click(function () {
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "Get",
+                url: "/Admin/Writer/WriterList",
+                success: function (func) {
+                    let writerLog = jQuery.parseJSON(func);
+                    console.log(writerLog);
+                    let tablehtml = "<table class=table table-bordered> <tr><th>Writer ID</th><th>Writer Name</th></tr>";
+                    $.each(writerLog, (index, value) => {
+                        tablehtml += `<tr><td>${value.Id}</td><td>${value.Name}</td></tr>`
+                    });
+                    tablehtml += "</table>";
+                    $("#writerlist").html(tablehtml);
+                }
+            });
+        });
+        $("#btngetbyid").click(x => {
+            let id = $("#writerId").val();
+            $.ajax({
+                contentType: "application/json",
+                type: "Get",
+                url: "/Admin/Writer/GetWriterById/",
+                data: { writerId: id },
+                success: function (func) {
+                    let writerConvert = jQuery.parseJSON(func);
+                    console.log(writerConvert);
+
+                    let getValue = `<table class=table table-bordered> <tr><th>Writer ID</th><th>Writer Name
+                                </th></tr> <tr><td>${writerConvert.Id}</td><td>${writerConvert.Name}</td></tr></tbale>`;
+                    $("#writerget").html(getValue);
+
+                }
+            });
+        });
+    </script>
+}
