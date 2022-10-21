@@ -20,7 +20,8 @@
         <tr>
             <th>@item.Id</th>
             <td>@item.Name</td>
-            <td><a href="#" class="btn btn-danger">Make Inactive</a></td>
+            <td><a href="/Admin/Categories/DeleteCategory/@item.Id" id="DeleteBtn" 
+                   onclick="return confirm('Are you sure?');" class="btn btn-danger">Make Inactive</a></td>
             <td><a href="#" class="btn btn-warning">Make Active</a></td>
             <td><a href="#" class="btn btn-success">Edit</a></td>
         </tr>

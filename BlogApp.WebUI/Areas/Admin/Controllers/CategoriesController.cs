@@ -50,5 +50,11 @@ namespace BlogApp.WebUI.Areas.Admin.Controllers
             }
             return View();
         }
+
+        public IActionResult DeleteCategory(int id)
+        {
+            _categoryService.Delete(id);
+            return RedirectToAction("Index");
+        }
     }
 }
