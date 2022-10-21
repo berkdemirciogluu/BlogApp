@@ -14,6 +14,7 @@ namespace BlogApp.BusinessLayer.Utilities.DependencyContainers
         public static void AddBusinessServices(this IServiceCollection services)
         {
             services.AddScoped<IAuthorService, AuthorManager>();
+            services.AddScoped<IAdminService, AdminManager>();
             services.AddScoped<IBlogService, BlogManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IContactService, ContactManager>();

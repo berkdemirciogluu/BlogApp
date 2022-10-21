@@ -32,7 +32,7 @@ namespace BlogApp.BusinessLayer.Concrete
 
         public List<Contact> GetAll()
         {
-            throw new NotImplementedException();
+            return _contactRepository.GetAll();
         }
 
         public Contact GetById(int id)

@@ -18,6 +18,7 @@ namespace BlogApp.DataAccessLayer.DependencyContainers
             services.AddScoped<INotificationRepository, EfCoreNotificationRepository>();
             services.AddScoped<IMessageRepository, EfCoreMessageRepository>();
             services.AddScoped<IMessage2Repository, EfCoreMessage2Repository>();
+            services.AddScoped<IAdminRepository, EfCoreAdminRepository>();
         }
     }
 }
