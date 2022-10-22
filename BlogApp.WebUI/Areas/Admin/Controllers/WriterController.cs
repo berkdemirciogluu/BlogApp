@@ -29,6 +29,20 @@ namespace BlogApp.WebUI.Areas.Admin.Controllers
             return Json(jsonWriters);
         }
 
+        [HttpPost]
+        public IActionResult AddWriter(WriterClass writer)
+        {
+            writers.Add(writer);
+            var jsonWriters = JsonConvert.SerializeObject(writer);
+            return Json(jsonWriters);
+        }
+        [HttpPost]
+        public IActionResult DeleteWriter(int id)
+        {
+            var writer = writers.FirstOrDefault(x => x.Id == id);
+            writers.Remove(writer);
+            return Json(writer);
+        }
 
         public static List<WriterClass> writers = new List<WriterClass>
         {
