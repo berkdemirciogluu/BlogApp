@@ -44,6 +44,14 @@ namespace BlogApp.WebUI.Areas.Admin.Controllers
             return Json(writer);
         }
 
+        public IActionResult UpdateWriter(WriterClass writer)
+        {
+            var writerUpdate = writers.FirstOrDefault(x => x.Id == writer.Id);
+            writerUpdate.Name = writer.Name;
+            var jsonWriter = JsonConvert.SerializeObject(writer);
+            return Json(jsonWriter);
+        }
+
         public static List<WriterClass> writers = new List<WriterClass>
         {
             new WriterClass

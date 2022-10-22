@@ -24,17 +24,25 @@
     <input type="text" id="writerId" placeholder="Enter Writer ID" class="form-control" />
 </div>
 <button type="button" id="btngetbyid" class="btn btn-outline-success">Get Writer</button>
-<br /><br />
+<br />
+<br />
 <div>
     <input type="text" id="txtwriterId" placeholder="Writer ID" class="form-control" />
     <input type="text" id="txtwriterName" placeholder="Writer Name" class="form-control" />
 </div>
 <button type="button" id="btnaddwriter" class="btn btn-outline-info">Add Writer</button>
-<br /><br />
+<br />
+<br />
 <div>
     <input type="text" id="txtId" placeholder="Writer ID" class="form-control" />
 </div>
 <button type="button" id="btndeletewriter" class="btn btn-outline-danger">Delete Writer</button>
+<br /><br />
+<div>
+    <input type="text" id="updatewriteid" placeholder="Writer ID" class="form-control" />
+    <input type="text" id="updatewritename" placeholder="Writer Name" class="form-control" />
+</div>
+<button type="button" id="btndupdatewriter" class="btn btn-outline-warning">Update Writer</button>
 
 @section scripts {
     <script>
@@ -68,7 +76,7 @@
                     console.log(writerConvert);
 
                     let getValue = `<table class=table table-bordered> <tr><th>Writer ID</th><th>Writer Name
-                                    </th></tr> <tr><td>${writerConvert.Id}</td><td>${writerConvert.Name}</td></tr></tbale>`;
+                                        </th></tr> <tr><td>${writerConvert.Id}</td><td>${writerConvert.Name}</td></tr></tbale>`;
                     $("#writerget").html(getValue);
 
                 }
@@ -89,7 +97,6 @@
                 }
             });
         });
-
         $("#btndeletewriter").click(function () {
             let id = $("#txtId").val();
             $.ajax({
@@ -101,6 +108,19 @@
                 }
             });
         });
-
+        $("#btndupdatewriter").click(function () {
+            let writer = {
+                Id: $("#updatewriteid").val(),
+                Name: $("#updatewritename").val()
+            };
+            $.ajax({
+                type: "Post",
+                url: "/Admin/Writer/UpdateWriter/",
+                data: writer,
+                success: function (func) {
+                    alert("Writer is succesfully updated");
+                }
+            });
+        });
     </script>
 }
