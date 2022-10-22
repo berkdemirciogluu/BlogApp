@@ -1,4 +1,5 @@
-﻿using BlogApp.WebUI.Areas.Admin.Models;
+﻿using BlogApp.BusinessLayer.Abstract;
+using BlogApp.WebUI.Areas.Admin.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -11,6 +12,13 @@ namespace BlogApp.WebUI.Areas.Admin.Controllers
     [Area("Admin")]
     public class WriterController : Controller
     {
+        IAuthorService _authorService;
+
+        public WriterController(IAuthorService authorService)
+        {
+            _authorService = authorService;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -18,12 +26,14 @@ namespace BlogApp.WebUI.Areas.Admin.Controllers
 
         public IActionResult WriterList()
         {
+            var writers = _authorService.GetAll();
             var jsonWriters = JsonConvert.SerializeObject(writers);
             return Json(jsonWriters);
         }
 
         public IActionResult GetWriterById(int writerId)
         {
+            var writers = _authorService.GetAll();
             var writer = writers.FirstOrDefault(x => x.Id == writerId);
             var jsonWriters = JsonConvert.SerializeObject(writer);
             return Json(jsonWriters);
@@ -32,27 +42,27 @@ namespace BlogApp.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult AddWriter(WriterClass writer)
         {
-            writers.Add(writer);
+            writersStatic.Add(writer);
             var jsonWriters = JsonConvert.SerializeObject(writer);
             return Json(jsonWriters);
         }
         [HttpPost]
         public IActionResult DeleteWriter(int id)
         {
-            var writer = writers.FirstOrDefault(x => x.Id == id);
-            writers.Remove(writer);
-            return Json(writer);
+            _authorService.Delete(id);
+            return RedirectToAction("Index", "Writer");
         }
 
         public IActionResult UpdateWriter(WriterClass writer)
         {
-            var writerUpdate = writers.FirstOrDefault(x => x.Id == writer.Id);
+            var writerUpdate = _authorService.GetById(writer.Id);
             writerUpdate.Name = writer.Name;
+            _authorService.Update(writerUpdate);
             var jsonWriter = JsonConvert.SerializeObject(writer);
             return Json(jsonWriter);
         }
 
-        public static List<WriterClass> writers = new List<WriterClass>
+        public static List<WriterClass> writersStatic = new List<WriterClass>
         {
             new WriterClass
             {
