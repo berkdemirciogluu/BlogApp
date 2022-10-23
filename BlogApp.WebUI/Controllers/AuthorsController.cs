@@ -5,6 +5,7 @@ using BlogApp.EntityLayer.Concrete;
 using BlogApp.WebUI.Models;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,10 +18,14 @@ namespace BlogApp.WebUI.Controllers
     public class AuthorsController : Controller
     {
         IAuthorService _authorService;
+        IUserService _userService;
+        private readonly UserManager<AppUser> _userManager;
 
-        public AuthorsController(IAuthorService authorService)
+        public AuthorsController(IAuthorService authorService, UserManager<AppUser> userManager, IUserService userService)
         {
             _authorService = authorService;
+            _userManager = userManager;
+            _userService = userService;
         }
         [Authorize]
         public IActionResult Index()
@@ -50,11 +55,10 @@ namespace BlogApp.WebUI.Controllers
         [HttpGet]
         public IActionResult AuthorEditProfile()
         {
-            DatabaseContext context = new DatabaseContext(); 
             var userName = User.Identity.Name;
-            var userMail = context.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var userId = _authorService.GetAll().Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
-            return View(_authorService.GetById(userId));
+            var userMail = _userService.GetAll().Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            var userId = _userService.GetAll().Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
+            return View(_userService.GetById(userId));
         }
 
         [HttpPost]        

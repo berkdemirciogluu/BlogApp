@@ -1,9 +1,7 @@
 ﻿@using BlogApp.EntityLayer.Concrete
-@model Author
-@{
-    ViewData["Title"] = "AuthorEditProfile";
-    Layout = "~/Views/Shared/AuthorLayout.cshtml";
-}
+@model AppUser
+@{ ViewData["Title"] = "AuthorEditProfile";
+                Layout = "~/Views/Shared/AuthorLayout.cshtml"; }
 
 @using (Html.BeginForm("AuthorEditProfile", "Authors", FormMethod.Post))
 {
@@ -17,8 +15,13 @@
             <form class="forms-sample">
                 <div class="form-group">
                     <label for="exampleInputName1">Name</label>
-                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.Name)
+                    @Html.TextBoxFor(x => x.NameSurname, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.NameSurname)
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Username</label>
+                    @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.UserName)
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail3">Email address</label>
@@ -27,8 +30,8 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword4">Password</label>
-                    @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.Password)
+                    @Html.PasswordFor(x => x.PasswordHash, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.PasswordHash)
                 </div>
                 <div class="form-group">
                     <label>Upload Profile Photo</label>
@@ -40,14 +43,13 @@
                         </span>
                     </div>
                 </div>
-                <div class="form-group">
+                @*<div class="form-group">
                     <label for="exampleTextarea1">About Author</label>
                     @Html.TextAreaFor(x => x.About, 10, 3, new { @class = "form-control" })
-                </div>
+                </div>*@
                 <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                 <button class="btn btn-light">Cancel</button>
             </form>
         </div>
     </div>
-</div>
-}
+</div>}

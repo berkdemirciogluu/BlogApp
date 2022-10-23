@@ -24,6 +24,7 @@ namespace BlogApp.BusinessLayer.Utilities.DependencyContainers
             services.AddScoped<IAboutService, AboutManager>();
             services.AddScoped<IMessageService, MessageManager>();
             services.AddScoped<IMessage2Service, Message2Manager>();
+            services.AddScoped<IUserService, UserManager>();
         }
     }
 }
