@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 
 namespace BlogApp.WebUI.Controllers
 {
+    [AllowAnonymous]
+
     public class BlogsController : Controller
     {
         IBlogService _blogService;
@@ -25,12 +27,11 @@ namespace BlogApp.WebUI.Controllers
             _categoryService = categoryService;
             _authorService = authorService;
         }
-
         public IActionResult Index()
         {
             return View(_blogService.GetBlogWithCategory());
         }
-
+        //[AllowAnonymous]
         public IActionResult BlogDetails(int id)
         {
             ViewBag.id = id;

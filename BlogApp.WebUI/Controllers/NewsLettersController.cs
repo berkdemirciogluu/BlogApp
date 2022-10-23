@@ -1,5 +1,6 @@
 ﻿using BlogApp.BusinessLayer.Abstract;
 using BlogApp.EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace BlogApp.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class NewsLettersController : Controller
     {
         INewsLetterService _newsLetterService;
@@ -24,7 +26,7 @@ namespace BlogApp.WebUI.Controllers
         }
 
         [HttpPost]
-        public PartialViewResult SubscribeMail(NewsLetter newsLetter)
+        public IActionResult SubscribeMail(NewsLetter newsLetter)
         {
             newsLetter.Status = true;
             _newsLetterService.Add(newsLetter);

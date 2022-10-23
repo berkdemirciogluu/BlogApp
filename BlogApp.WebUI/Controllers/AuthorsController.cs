@@ -1,5 +1,6 @@
 ﻿using BlogApp.BusinessLayer.Abstract;
 using BlogApp.BusinessLayer.Utilities.ValidationRules.FluentValidation;
+using BlogApp.DataAccessLayer.Context;
 using BlogApp.EntityLayer.Concrete;
 using BlogApp.WebUI.Models;
 using FluentValidation.Results;
@@ -49,7 +50,9 @@ namespace BlogApp.WebUI.Controllers
         [HttpGet]
         public IActionResult AuthorEditProfile()
         {
-            var userMail = User.Identity.Name;
+            DatabaseContext context = new DatabaseContext(); 
+            var userName = User.Identity.Name;
+            var userMail = context.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
             var userId = _authorService.GetAll().Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
             return View(_authorService.GetById(userId));
         }

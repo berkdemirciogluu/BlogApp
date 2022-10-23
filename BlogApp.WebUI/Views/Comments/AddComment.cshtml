@@ -1,7 +1,7 @@
 ﻿<div class="comment-top">
     <h4>Leave a Comment</h4>
     <div class="comment-bottom">
-        <form action="/Comments/AddComment/" method="post">
+        <form asp-action="AddComment" method="post" asp-controller="Comments">
             <input class="form-control" type="text" name="UserName" placeholder="Full Name" required="">
             <input class="form-control" type="text" name="Title" placeholder="Subject" required="">
             <textarea class="form-control" name="Content" placeholder="Content..." required=""></textarea>
