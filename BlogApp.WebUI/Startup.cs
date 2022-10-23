@@ -1,6 +1,7 @@
 using BlogApp.BusinessLayer.Utilities.DependencyContainers;
-using BlogApp.CoreLayer.Utilities.DependencyContainers;
+using BlogApp.DataAccessLayer.Context;
 using BlogApp.DataAccessLayer.DependencyContainers;
+using BlogApp.EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -24,6 +25,13 @@ namespace BlogApp.WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DatabaseContext>();
+            services.AddIdentity<AppUser, AppRole>(x =>
+            {
+                x.Password.RequireUppercase = false;
+                x.Password.RequireNonAlphanumeric = false;
+            })
+                .AddEntityFrameworkStores<DatabaseContext>();
             services.AddControllersWithViews();
             //services.AddCoreDependencies();
             services.AddMvc(config =>
