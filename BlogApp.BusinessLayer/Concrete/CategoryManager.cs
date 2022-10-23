@@ -25,8 +25,7 @@ namespace BlogApp.BusinessLayer.Concrete
 
         public void Delete(int id)
         {
-            var categoryToDelete = _categoryRepository.GetById(id);
-            _categoryRepository.Delete(categoryToDelete);
+            _categoryRepository.Delete(id);
         }
 
         public List<Category> GetAll()

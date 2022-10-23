@@ -24,10 +24,11 @@ namespace BlogApp.DataAccessLayer.Concrete.EnitityFrameworkCore
                 context.SaveChanges();
             }
         }
-        public void Delete(T entity)
+        public void Delete(int id)
         {
             using (TContext context = new TContext())
             {
+                var entity = GetById(id);
                 var deletedEntity = context.Entry(entity);
                 deletedEntity.State = EntityState.Deleted;
                 context.SaveChanges();

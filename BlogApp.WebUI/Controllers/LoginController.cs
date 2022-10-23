@@ -44,27 +44,12 @@ namespace BlogApp.WebUI.Controllers
             }
             return View();
         }
-        //[HttpPost]
-        //public async Task<IActionResult> Index(Author author)
-        //{
-        //    DatabaseContext context = new DatabaseContext();
-        //    var datavalue = context.Authors.FirstOrDefault(x => x.Email == author.Email && x.Password == author.Password);
-        //    if (datavalue != null)
-        //    {
-        //        var claims = new List<Claim>
-        //        {
-        //            new Claim(ClaimTypes.Name,author.Email)
-        //        };
-        //        var userIdentity = new ClaimsIdentity(claims, "a");
-        //        ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
-        //        await HttpContext.SignInAsync(principal);
-        //        return RedirectToAction("Index", "Dashboard");
-        //    }
-        //    else
-        //    {
-        //        return View();
-        //    }
-        //}
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Login");
+        }
 
     }
 }

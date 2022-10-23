@@ -13,18 +13,19 @@ namespace BlogApp.WebUI.ViewComponents.Author
     public class AuthorAboutOnDashboard : ViewComponent
     {
         IAuthorService _authorService;
-        DatabaseContext context = new DatabaseContext();
+        IUserService _userService;
 
-        public AuthorAboutOnDashboard(IAuthorService authorService)
+        public AuthorAboutOnDashboard(IAuthorService authorService, IUserService userService)
         {
             _authorService = authorService;
+            _userService = userService;
         }
 
         public IViewComponentResult Invoke()
         {
             var userName = User.Identity.Name;
             ViewBag.Username = userName;
-            var userMail = context.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault(); 
+            var userMail = _userService.GetAll().Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault(); 
             var userId = _authorService.GetAll().Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
             return View(_authorService.GetById(userId));
         }

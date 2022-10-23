@@ -13,7 +13,7 @@ namespace BlogApp.DataAccessLayer.Abstract
         T GetById(int id);        
         void Add(T entity);        
         void Update(T entity);        
-        void Delete(T entity);
+        void Delete(int id);
 
         //Task<T> AddAsync(T entity);
         //Task<T> UpdateAsync(T entity);

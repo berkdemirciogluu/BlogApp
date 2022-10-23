@@ -10,5 +10,6 @@ namespace BlogApp.BusinessLayer.Abstract
     public interface IMessage2Service : IBaseService<Message2>
     {
         List<Message2> GetInboxMessagesByAuthor(int receiverId);
+        List<Message2> GetSendboxMessagesByAuthor(int receiverId);
     }
 }

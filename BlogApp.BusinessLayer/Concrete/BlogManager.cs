@@ -27,8 +27,7 @@ namespace BlogApp.BusinessLayer.Concrete
 
         public void Delete(int blogId)
         {
-            var blogToDelete = _blogRepository.GetById(blogId);
-            _blogRepository.Delete(blogToDelete);
+            _blogRepository.Delete(blogId);
         }
 
         public List<Blog> GetAll()

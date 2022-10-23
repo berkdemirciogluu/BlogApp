@@ -1,16 +1,17 @@
 ﻿@using BlogApp.EntityLayer.Concrete
 @model List<Message2>
+
 @{
-    ViewData["Title"] = "Inbox";
+    ViewData["Title"] = "Sendbox";
     Layout = "~/Views/Shared/AuthorLayout.cshtml";
 }
 
-<h1>Inbox</h1>
+<h1>Sendbox</h1>
 <table class="table table-bordered">
     <tr>
         <th>#</th>
         <th>Subject</th>
-        <th>From</th>
+        <th>To</th>
         <th>Date</th>
         <th>See Message</th>
     </tr>
@@ -19,10 +20,11 @@
 <tr>
     <th>@item.Id</th>
     <td>@item.Subject</td>
-    <td>@item.AuthorSender.Name</td>
+    <td>@item.AuthorReceiver.Name</td>
     <td>@(((DateTime)item.Date).ToString("dd/MMM/yyyy"))</td>
     <td><a href="/Message/MessageDetails/@item.Id" class="btn btn-warning">See Message</a></td>
-</tr>}
+</tr>
+}
 </table>
 <a href="/Message/SendMessage/" class="btn btn-primary">Create New Message</a>
 

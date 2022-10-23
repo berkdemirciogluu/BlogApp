@@ -20,12 +20,12 @@ namespace BlogApp.BusinessLayer.Concrete
 
         public void Add(Message2 entity)
         {
-            throw new NotImplementedException();
+            _message2Repository.Add(entity);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            _message2Repository.Delete(id);
         }
 
         public List<Message2> GetAll()
@@ -45,7 +45,12 @@ namespace BlogApp.BusinessLayer.Concrete
 
         public void Update(Message2 entity)
         {
-            throw new NotImplementedException();
+            _message2Repository.Update(entity);
+        }
+
+        public List<Message2> GetSendboxMessagesByAuthor(int receiverId)
+        {
+            return _message2Repository.GetSendboxWithByAuthor(receiverId);
         }
     }
 }

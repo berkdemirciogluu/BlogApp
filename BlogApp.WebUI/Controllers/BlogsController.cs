@@ -20,12 +20,14 @@ namespace BlogApp.WebUI.Controllers
         IBlogService _blogService;
         ICategoryService _categoryService;
         IAuthorService _authorService;
+        IUserService _userService;
 
-        public BlogsController(IBlogService blogService, ICategoryService categoryService, IAuthorService authorService)
+        public BlogsController(IBlogService blogService, ICategoryService categoryService, IAuthorService authorService, IUserService userService)
         {
             _blogService = blogService;
             _categoryService = categoryService;
             _authorService = authorService;
+            _userService = userService;
         }
         public IActionResult Index()
         {
@@ -40,7 +42,8 @@ namespace BlogApp.WebUI.Controllers
 
         public IActionResult BlogListByAuthor()
         {
-            var userMail = User.Identity.Name;
+            var userName = User.Identity.Name;
+            var userMail = _userService.GetAll().Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
             var userId = _authorService.GetAll().Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
             return View(_blogService.GetBlogWithCategoryByAuthor(userId));
         }
@@ -53,7 +56,8 @@ namespace BlogApp.WebUI.Controllers
         [HttpPost]
         public IActionResult AddBlog(Blog blog)
         {
-            var userMail = User.Identity.Name;
+            var userName = User.Identity.Name;
+            var userMail = _userService.GetAll().Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
             var userId = _authorService.GetAll().Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
             BlogValidator authorValidator = new BlogValidator();
             ValidationResult results = authorValidator.Validate(blog);
@@ -90,7 +94,8 @@ namespace BlogApp.WebUI.Controllers
         [HttpPost]
         public IActionResult EditBlog(Blog blog)
         {
-            var userMail = User.Identity.Name;
+            var userName = User.Identity.Name;
+            var userMail = _userService.GetAll().Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
             var userId = _authorService.GetAll().Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
             blog.AuthorId = userId;
             blog.CreatedDate = DateTime.Parse(DateTime.Now.ToShortDateString());

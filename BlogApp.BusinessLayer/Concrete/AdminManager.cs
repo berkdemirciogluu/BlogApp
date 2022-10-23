@@ -25,8 +25,7 @@ namespace BlogApp.BusinessLayer.Concrete
 
         public void Delete(int id)
         {
-            var adminToDelete = _adminRepository.GetById(id);
-            _adminRepository.Delete(adminToDelete);
+            _adminRepository.Delete(id);
         }
 
         public List<Admin> GetAll()

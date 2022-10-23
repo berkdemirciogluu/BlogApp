@@ -16,7 +16,15 @@ namespace BlogApp.DataAccessLayer.Concrete.EnitityFrameworkCore
         {
             using (DatabaseContext context = new DatabaseContext())
             {
-                return context.Message2s.Include(x => x.AuthorSender).Where(x => x.SenderId == authorId).ToList();
+                return context.Message2s.Include(x => x.AuthorSender).Where(x => x.ReceiverId == authorId).ToList();
+            }
+        }
+
+        public List<Message2> GetSendboxWithByAuthor(int authorId)
+        {
+            using (DatabaseContext context = new DatabaseContext())
+            {
+                return context.Message2s.Include(x => x.AuthorReceiver).Where(x => x.SenderId == authorId).ToList();
             }
         }
     }

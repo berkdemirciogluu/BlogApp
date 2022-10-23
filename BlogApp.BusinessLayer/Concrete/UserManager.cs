@@ -42,7 +42,7 @@ namespace BlogApp.BusinessLayer.Concrete
 
         public void Update(AppUser entity)
         {
-            throw new NotImplementedException();
+            _userRepository.Update(entity);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace BlogApp.DataAccessLayer.Abstract
     public interface IMessage2Repository : IGenericRepository<Message2>
     {
         List<Message2> GetMessageWithByAuthor(int authorId);
+        List<Message2> GetSendboxWithByAuthor(int authorId);
     }
 
 }

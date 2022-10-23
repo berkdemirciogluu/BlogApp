@@ -53,32 +53,27 @@ namespace BlogApp.WebUI.Controllers
         }
 
         [HttpGet]
-        public IActionResult AuthorEditProfile()
+        public async Task<IActionResult> AuthorEditProfile()
         {
-            var userName = User.Identity.Name;
-            var userMail = _userService.GetAll().Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var userId = _userService.GetAll().Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
-            return View(_userService.GetById(userId));
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            UserUpdateViewModel model = new UserUpdateViewModel();
+            model.Email = user.Email;
+            model.NameSurname = user.NameSurname;
+            model.ImageUrl = user.ImageUrl;
+            model.Username = user.UserName;
+            return View(model);
         }
 
         [HttpPost]        
-        public IActionResult AuthorEditProfile(Author author)
+        public async Task<IActionResult> AuthorEditProfile(UserUpdateViewModel model)
         {
-            AuthorValidator validator = new AuthorValidator();
-            ValidationResult result = validator.Validate(author);
-            if (result.IsValid)
-            {
-                _authorService.Update(author);
-                return RedirectToAction("Index", "Dashboard");
-            }
-            else
-            {
-                foreach (var item in result.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-            }
-            return View();
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            user.Email = model.Email;
+            user.NameSurname = model.NameSurname;
+            user.ImageUrl = model.ImageUrl;
+            user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, model.Password);
+            await _userManager.UpdateAsync(user);
+            return RedirectToAction("Index", "Dashboard");   
         }
 
         [AllowAnonymous]
@@ -109,5 +104,6 @@ namespace BlogApp.WebUI.Controllers
             _authorService.Add(author);
             return RedirectToAction("Index", "Dashboard");
         }
+
     }
 }
