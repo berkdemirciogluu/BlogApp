@@ -11,17 +11,21 @@ namespace BlogApp.WebUI.ViewComponents.Author
     {
         IAuthorService _authorService;
         IMessage2Service _message2Service;
+        IUserService _userService;
 
-        public AuthorMessageNotification(IAuthorService authorService,IMessage2Service message2Service)
+        public AuthorMessageNotification(IAuthorService authorService,IMessage2Service message2Service, IUserService userService)
         {
             _authorService = authorService;
             _message2Service = message2Service;
+            _userService = userService;
         }
 
         public IViewComponentResult Invoke()
         {
-            int receiverId = 3;
-            return View(_message2Service.GetInboxMessagesByAuthor(receiverId));
+            var userName = User.Identity.Name;
+            var userMail = _userService.GetAll().Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            var userId = _authorService.GetAll().Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();
+            return View(_message2Service.GetInboxMessagesByAuthor(userId));
         }
     }
 }
